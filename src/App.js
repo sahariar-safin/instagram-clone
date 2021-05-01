@@ -9,15 +9,27 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Login from './componants/Login/Login';
+import PrivateRoute from './componants/PrivateRoute/PrivateRoute';
 
 export const UserContext = createContext();
 
 function App() {
-  const [loggingUser, setLoggingUser] = useState([]);
+  const [loggingUser, setLoggingUser] = useState({
+    
+  });
   return (
     <UserContext.Provider value={[loggingUser, setLoggingUser]}>
-      <Navbar></Navbar>
-      <Home></Home>
+      <Router>
+        <Switch>
+          <Route path="/login">
+            <Login></Login>
+          </Route>
+          <PrivateRoute path="/">
+            <Home></Home>
+          </PrivateRoute>
+        </Switch>
+      </Router>
     </UserContext.Provider>
   );
 }
