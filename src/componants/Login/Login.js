@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useContext } from 'react';
 import { useHistory, useLocation } from 'react-router';
 import { UserContext } from '../../App';
@@ -13,6 +14,17 @@ const Login = () => {
     const handleSetUser = (user) => {
         console.log(user);
         setLoggingUser(user);
+        axios.post('http://localhost:5000/adduser', {
+            _id: user.email,
+            name: user.displayName,
+            img: user.photoURL
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         history.replace(from);
     }
 

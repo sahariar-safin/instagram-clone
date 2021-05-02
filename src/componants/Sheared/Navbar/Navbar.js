@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { UserContext } from '../../../App';
 
 const Navbar = () => {
+    const [loggingUser, setLoggingUser] = useContext(UserContext);
     return (
         <div style={{ backgroundColor: "white", borderBottom: "1px solid lightgray" }}>
             <nav class="container navbar navbar-expand-lg navbar-light">
@@ -15,10 +18,13 @@ const Navbar = () => {
                         </form>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
+                                {loggingUser.photoURL
+                                    ? <img style={{
+                                        width: "70px",
+                                        height: "70px",
+                                        borderRadius: "50%",
+                                    }} src={loggingUser.photoURL} alt="" />
+                                    : <Link class="nav-link" aria-current="page" to="/login">Login</Link>}
                             </li>
                         </ul>
                     </div>

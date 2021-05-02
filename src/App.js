@@ -16,11 +16,12 @@ export const UserContext = createContext();
 
 function App() {
   const [loggingUser, setLoggingUser] = useState({
-    
+
   });
   return (
     <UserContext.Provider value={[loggingUser, setLoggingUser]}>
       <Router>
+        <Navbar></Navbar>
         <Switch>
           <Route path="/login">
             <Login></Login>
