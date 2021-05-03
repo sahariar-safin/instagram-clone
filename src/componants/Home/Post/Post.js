@@ -39,7 +39,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Post = () => {
+const Post = ({ post }) => {
+    const { postDetails, postImage, postUser, postUserImg } = post;
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
@@ -52,27 +53,26 @@ const Post = () => {
             <CardHeader
                 avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>
-                        R
-          </Avatar>
+                        <img src={postUserImg} alt="" />
+                    </Avatar>
                 }
                 action={
                     <IconButton aria-label="settings">
                         <MoreVertIcon />
                     </IconButton>
                 }
-                title="Shrimp and Chorizo Paella"
+                title={postUser}
                 subheader="September 14, 2016"
             />
             <CardMedia
                 className={classes.media}
-                image="/static/images/cards/paella.jpg"
+                image={`data:image/png;base64,${ postImage }`}
                 title="Paella dish"
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
-                    This impressive paella is a perfect party dish and a fun meal to cook together with your
-                    guests. Add 1 cup of frozen peas along with the mussels, if you like.
-        </Typography>
+                    {postDetails}
+                </Typography>
             </CardContent>
             <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">

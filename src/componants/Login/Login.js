@@ -12,7 +12,6 @@ const Login = () => {
     let { from } = location.state || { from: { pathname: "/" } };
 
     const handleSetUser = (user) => {
-        console.log(user);
         setLoggingUser(user);
         axios.post('http://localhost:5000/adduser', {
             _id: user.email,
@@ -29,13 +28,11 @@ const Login = () => {
     }
 
     const handleLogin = () => {
-        console.log("Click");
         GoogleSignIn()
             .then(data => {
                 handleSetUser(data);
             })
     }
-    console.log("working ");
     return (
         <div className="container">
             <button onClick={handleLogin} className="btn btn-primary">Login</button>
